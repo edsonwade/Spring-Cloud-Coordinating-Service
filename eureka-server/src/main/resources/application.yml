@@ -1,11 +1,21 @@
 version: '3'
 
-
 spring:
   datasource:
-    driverClassName:
-    url: jdbc:postgresql://localhost:5432/eureka-server
-    username: postgres
-    password: Janina1.
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: ${SPRING_DB_URL}
+    username: ${SPRING_DB_USERNAME}
+    password: ${SPRING_DB_PASSWORD}
+  jpa:
+    show-sql: true
+
 server:
-  port: 8081
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
