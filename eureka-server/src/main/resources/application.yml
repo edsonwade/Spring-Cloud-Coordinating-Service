@@ -1,0 +1,11 @@
+version: '3'
+
+
+spring:
+  datasource:
+    driverClassName:
+    url: jdbc:postgresql://localhost:5432/eureka-server
+    username: postgres
+    password: Janina1.
+server:
+  port: 8081
