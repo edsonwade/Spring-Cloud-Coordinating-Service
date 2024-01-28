@@ -1,0 +1,16 @@
+1. Student Service:
+Objective:
+Manage student information and course enrollments.
+Functionalities:
+CRUD Operations:
+Create, read, update, and delete student profiles.
+Course Enrollment:
+Enroll students in courses.
+View enrolled courses.
+Use Cases:
+Student Registration:
+A new student registers with the system.
+Course Enrollment:
+A student enrolls in a course.
+
+

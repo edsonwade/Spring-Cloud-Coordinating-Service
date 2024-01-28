@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://your-rds-host:5432/your-database
+    username: your-username
+    password: your-password
+  jpa:
+    hibernate:
+      ddl-auto: update

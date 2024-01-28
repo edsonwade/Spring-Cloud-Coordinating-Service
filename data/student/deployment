@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: your-auth-service
+  template:
+    metadata:
+      labels:
+        app: your-auth-service
+    spec:
+      containers:
+      - name: your-auth-service
+        image: your-auth-service-image:latest
+        ports:
+        - containerPort: 8080
+
+---service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: your-auth-service
+spec:
+  selector:
+    app: your-auth-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

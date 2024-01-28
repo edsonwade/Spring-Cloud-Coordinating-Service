@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  eureka-server-1:
+    # ... (your existing configuration)
+
+  eureka-server-2:
+    # ... (your existing configuration)
+
+  postgres-db:
+    # ... (your existing configuration)
+
+  mongodb-db:
+    # ... (your existing configuration)
+
+  student-service:
+    image: your-student-service-image:latest
+    container_name: student-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      - eureka-server-1
+      - eureka-server-2
+      - postgres-db
+      - mongodb-db
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-server:9092  # Replace with your Kafka server details
+
+  teacher-service:
+    image: your-teacher-service-image:latest
+    container_name: teacher-service
+    ports:
+      - "8082:8080"
+    depends_on:
+      - eureka-server-1
+      - eureka-server-2
+      - postgres-db
+      - mongodb-db
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-server:9092  # Replace with your Kafka server details
+
+  api-gateway:
+    image: your-api-gateway-image:latest
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server-1
+      - eureka-server-2
+      - student-service
+      - teacher-service
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-server:9092  # Replace with your Kafka server details
+
+  prometheus:
+    # ... (your existing configuration)
+
+  grafana:
+    # ... (your existing configuration)
+
+  health-check:
+    # ... (your existing configuration)

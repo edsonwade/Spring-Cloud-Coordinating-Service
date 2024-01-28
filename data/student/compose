@@ -1,0 +1,182 @@
+version: '3'
+
+services:
+  eureka-server-1:
+    image: your-eureka-image:latest
+    container_name: eureka-server-1
+    ports:
+      - "8761:8761"
+
+  eureka-server-2:
+    image: your-eureka-image:latest
+    container_name: eureka-server-2
+    ports:
+      - "8762:8761"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server-1:8761/eureka/
+
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: your_database_name
+      POSTGRES_USER: your_database_user
+      POSTGRES_PASSWORD: your_database_password
+    ports:
+      - "5432:5432"
+
+  mongodb-db:
+    image: mongo:latest
+    container_name: mongodb-db
+    ports:
+      - "27017:27017"
+
+  app-instance-1:
+    image: your-image-name:latest
+    container_name: app-instance-1
+    ports:
+      - "8081:8080"
+    depends_on:
+      - eureka-server-1
+      - eureka-server-2
+      - postgres-db
+      - mongodb-db
+
+  app-instance-2:
+    image: your-image-name:latest
+    container_name: app-instance-2
+    ports:
+      - "8082:8080"
+    depends_on:
+      - eureka-server-1
+      - eureka-server-2
+      - postgres-db
+      - mongodb-db
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app-instance-1
+      - app-instance-2
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=your_grafana_password
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+  health-check:
+    test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+    interval: 10s
+    retries: 5
+    timeout: 5s
+
+
+
+version: '3'
+
+services:
+
+  eureka-server:
+    image: your-eureka-image:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
+  authentication-service:
+    image: your-auth-service-image:latest
+    container_name: authentication-service
+    depends_on:
+      - eureka-server
+
+  api-gateway:
+    image: your-api-gateway-image:latest
+    container_name: api-gateway
+    depends_on:
+      - eureka-server
+
+  student-service:
+    image: your-student-service-image:latest
+    container_name: student-service
+    depends_on:
+      - eureka-server
+      - kafka
+
+  teacher-service:
+    image: your-teacher-service-image:latest
+    container_name: teacher-service
+    depends_on:
+      - eureka-server
+      - kafka
+
+  notification-service:
+    image: your-notification-service-image:latest
+    container_name: notification-service
+    depends_on:
+      - eureka-server
+      - kafka
+
+  email-service:
+    image: your-email-service-image:latest
+    container_name: email-service
+    depends_on:
+      - eureka-server
+
+  kafka:
+    image: wurstmeister/kafka:2.12-2.6.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - student-service
+      - teacher-service
+      - notification-service
+      - email-service
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=your_grafana_password
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+  health-check:
+    test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+    interval: 10s
+    retries: 5
+    timeout: 5s
+
+
+Pipelinie

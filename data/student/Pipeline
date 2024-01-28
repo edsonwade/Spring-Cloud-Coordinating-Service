@@ -1,0 +1,124 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    def mavenCmd = './mvnw' // Use the Maven Wrapper (if available) or the installed Maven
+                    // def mavenCmd = 'mvn'  // Use this if Maven is installed globally
+
+                    sh "${mavenCmd} clean install"
+                    sh "${mavenCmd} test"
+                }
+            }
+        }
+
+        stage('Dockerize and Push Images') {
+            steps {
+                script {
+                    def dockerImage = "your-docker-hub-username/your-image-name:latest"
+                    def mavenCmd = './mvnw' // Use the Maven Wrapper (if available) or the installed Maven
+                    // def mavenCmd = 'mvn'  // Use this if Maven is installed globally
+
+                    sh "${mavenCmd} clean install -Pdocker"
+                    sh "docker build -t ${dockerImage} ."
+                    sh "docker push ${dockerImage}"
+                }
+            }
+        }
+
+        stage('Deploy to Docker Compose') {
+            steps {
+                script {
+                    sh "docker-compose up -d"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                echo 'Cleaning up...'
+                sh 'docker-compose down'
+            }
+        }
+    }
+}
+
+
+The code is checked out from your Git repository.
+The project is built and tested using Maven.
+Docker images are built and pushed to Docker Hub.
+The Docker Compose file is used to deploy the microservices.
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    def mavenCmd = './mvnw' // Use the Maven Wrapper (if available) or the installed Maven
+                    // def mavenCmd = 'mvn'  // Use this if Maven is installed globally
+
+                    sh "${mavenCmd} clean install"
+                    sh "${mavenCmd} test"
+                }
+            }
+        }
+
+        stage('Dockerize and Push Images') {
+            steps {
+                script {
+                    def dockerImage = "your-docker-hub-username/your-image-name:latest"
+                    def mavenCmd = './mvnw' // Use the Maven Wrapper (if available) or the installed Maven
+                    // def mavenCmd = 'mvn'  // Use this if Maven is installed globally
+
+                    sh "${mavenCmd} clean install -Pdocker"
+                    sh "docker build -t ${dockerImage} ."
+                    sh "docker push ${dockerImage}"
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes with Helm') {
+            steps {
+                script {
+                    // Helm initialization (if needed)
+                    sh 'helm init --client-only'
+
+                    // Set the values file and release name
+                    def helmValuesFile = 'path/to/your/values.yaml'
+                    def helmReleaseName = 'your-release-name'
+
+                    // Deploy Helm chart
+                    sh "helm upgrade --install ${helmReleaseName} path/to/your/helm/chart --values ${helmValuesFile}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                echo 'Cleaning up...'
+                // Shut down Docker Compose or any other cleanup steps
+                sh 'docker-compose down'
+            }
+        }
+    }
+}

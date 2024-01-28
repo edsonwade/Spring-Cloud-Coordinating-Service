@@ -1,0 +1,103 @@
++----------------------------------------+
+|            AUTHENTICATION              |
+|            (Auth Service)              |
++----------------------------------------+
+                     |
++----------------------------------------+
+|             API GATEWAY                 |
+|  (Handles external API requests)       |
++----------------------------------------+
+                     |
++----------------------------------------+
+|             EUREKA SERVER               |
+|  (Service registration and discovery)  |
++----------------------------------------+
+    |                 |
++---v----+        +--v----+         +---------+
+| STUDENT|        |TEACHER |         | NOTIFIC |
+|SERVICE |        |SERVICE |         | SERVICE |
++---+----+        +---+----+         +----+----+
+    |                 |                    |
++---v-----+     +---v-----+            +--v---+
+| COURSE  |     | DATABASE |            | KAFKA |
+| SERVICE |     | SERVICES |            | BROKER|
++---+-----+     +----+-----+            +------+
+    |                |                      |
++---v---+        +--v---+                 |
+| AUTH  |        | AUTH  |                 |
+| SERVICE|       | SERVICE|                 |
++-------+        +-------+                 |
+                                           |
++------------------------------------------+
+|            DATABASE SERVICES             |
+|  (PostgreSQL, MongoDB, Notification DB)  |
++------------------------------------------+
+
+
+
+----------------------------------------------
+
+
++----------------------------------------+
+|             API GATEWAY                 |
+|  (Handles external API requests)       |
++----------------------------------------+
+                     |
++----------------------------------------+
+|             EUREKA SERVER               |
+|  (Service registration and discovery)  |
++----------------------------------------+
+    |                 |
++---v----+        +--v----+         +---------+
+| STUDENT|        |TEACHER |         | NOTIFIC |
+|SERVICE |        |SERVICE |         | SERVICE |
++---+----+        +---+----+         +----+----+
+    |                 |                    |
++---v-----+     +---v-----+            +--v---+
+| COURSE  |     | DATABASE |            | KAFKA |
+| SERVICE |     | SERVICES |            | BROKER|
++---+-----+     +----+-----+            +------+
+    |                |                      |
++---v---+        +--v---+                 |
+| AUTH  |        | AUTH  |                 |
+| SERVICE|       | SERVICE|                 |
++-------+        +-------+                 |
+                                           |
++------------------------------------------+
+|            DATABASE SERVICES             |
+|  (PostgreSQL, MongoDB, Notification DB)  |
++------------------------------------------+
+
+Explanation:
+
+API Gateway:
+
+Handles external API requests.
+Routes requests to the appropriate microservices.
+Eureka Server:
+
+Manages service registration and discovery.
+Student and Teacher Services:
+
+Microservices handling specific functionalities related to students and teachers.
+Interact with their respective databases.
+Course Service:
+
+Microservice for managing courses.
+Interacts with its respective database.
+Notification Service:
+
+Microservice responsible for handling notifications.
+Communicates with its database.
+Kafka Broker:
+
+Message broker for asynchronous communication between microservices.
+Allows for event-driven architecture.
+Authentication (Auth) Service:
+
+Handles user authentication.
+May use JWT for token-based authentication.
+Database Services:
+
+Separate databases for each microservice (PostgreSQL, MongoDB, Notification DB).
+Microservices interact with their respective databases for data storage.

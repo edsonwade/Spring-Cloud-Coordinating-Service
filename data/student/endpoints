@@ -1,0 +1,79 @@
+Student Service Endpoints:
+Create Student:
+
+POST /students
+Get All Students:
+
+GET /students
+Get Student by ID:
+
+GET /students/{studentId}
+Update Student:
+
+PUT /students/{studentId}
+Delete Student:
+
+DELETE /students/{studentId}
+Enroll Student in Course:
+
+POST /students/{studentId}/enroll/{courseId}
+Withdraw Student from Course:
+
+POST /students/{studentId}/withdraw/{courseId}
+Teacher Service Endpoints:
+Create Teacher:
+
+POST /teachers
+Get All Teachers:
+
+GET /teachers
+Get Teacher by ID:
+
+GET /teachers/{teacherId}
+Update Teacher:
+
+PUT /teachers/{teacherId}
+Delete Teacher:
+
+DELETE /teachers/{teacherId}
+Assign Teacher to Course:
+
+POST /teachers/{teacherId}/assign/{courseId}
+Remove Teacher from Course:
+
+POST /teachers/{teacherId}/remove/{courseId}
+Course Service Endpoints:
+Create Course:
+
+POST /courses
+Get All Courses:
+
+GET /courses
+Get Course by ID:
+
+GET /courses/{courseId}
+Update Course:
+
+PUT /courses/{courseId}
+Delete Course:
+
+DELETE /courses/{courseId}
+Get Enrolled Students:
+
+GET /courses/{courseId}/students
+Get Assigned Teachers:
+
+GET /courses/{courseId}/teachers
+Authentication Service Endpoints:
+User Login:
+POST /auth/login
+Authorization Service Endpoints:
+Validate JWT Token:
+GET /auth/validate
+These are just examples, and you may want to customize them based on your application's needs. Additionally, consider adding versioning to your API, such as /v1/students, to handle future changes more effectively.
+
+
+
+
+
+
