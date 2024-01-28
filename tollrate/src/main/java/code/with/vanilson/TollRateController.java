@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/tollrate")
 public class TollRateController {
 
     List<TollRate> tollRates;
@@ -26,12 +27,12 @@ public class TollRateController {
 
     }
 
-    @GetMapping(value = "tollrate")
+    @GetMapping()
     public ResponseEntity<List<TollRate>> listAllRates() {
         return ResponseEntity.ok(Collections.unmodifiableList(tollRates));
     }
 
-    @RequestMapping(value = "/tollrate/{stationId}")
+    @RequestMapping(value = "/{stationId}")
     public ResponseEntity<TollRate> listRatesById(@PathVariable int stationId) {
         var tollRate = tollRates.stream()
                 .filter(rate -> stationId == rate.getStationId())
