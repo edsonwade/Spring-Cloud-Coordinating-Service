@@ -30,51 +30,52 @@ Follow these steps to get the project up and running locally:
 ## Directory tree
 
 your-repo/
-├── your-service-1/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   └── resources/
-│   │   └── test/
-│   │       └── java/
-│   ├── Dockerfile
-│   ├── pom.xml
-│   └── README.md
-├── your-service-2/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   └── resources/
-│   │   └── test/
-│   │       └── java/
-│   ├── Dockerfile
-│   ├── pom.xml
-│   └── README.md
-├── your-gateway/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   └── resources/
-│   │   └── test/
-│   │       └── java/
-│   ├── Dockerfile
-│   ├── pom.xml
-│   └── README.md
-├── your-config-server/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   └── resources/
-│   │   └── test/
-│   │       └── java/
-│   ├── Dockerfile
-│   ├── pom.xml
-│   └── README.md
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-├── .gitignore
-└── docker-compose.yml
+|-- your-service-1/
+|   |-- src/
+|   |   |-- main/
+|   |   |   |-- java/
+|   |   |   `-- resources/
+|   |   `-- test/
+|   |       `-- java/
+|   |-- Dockerfile
+|   |-- pom.xml
+|   `-- README.md
+|-- your-service-2/
+|   |-- src/
+|   |   |-- main/
+|   |   |   |-- java/
+|   |   |   `-- resources/
+|   |   `-- test/
+|   |       `-- java/
+|   |-- Dockerfile
+|   |-- pom.xml
+|   `-- README.md
+|-- your-gateway/
+|   |-- src/
+|   |   |-- main/
+|   |   |   |-- java/
+|   |   |   `-- resources/
+|   |   `-- test/
+|   |       `-- java/
+|   |-- Dockerfile
+|   |-- pom.xml
+|   `-- README.md
+|-- your-config-server/
+|   |-- src/
+|   |   |-- main/
+|   |   |   |-- java/
+|   |   |   `-- resources/
+|   |   `-- test/
+|   |       `-- java/
+|   |-- Dockerfile
+|   |-- pom.xml
+|   `-- README.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- README.md
+|-- .gitignore
+`-- docker-compose.yml
+
 
 
    
