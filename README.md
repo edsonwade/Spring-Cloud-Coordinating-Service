@@ -28,53 +28,58 @@ Follow these steps to get the project up and running locally:
    git clone https://github.com/your-username/your-repo.git
 
 ## Directory tree
+#!/bin/bash
 
+cat <<EOL >> README.md
 your-repo/
 |-- your-service-1/
 |   |-- src/
 |   |   |-- main/
 |   |   |   |-- java/
-|   |   |   `-- resources/
-|   |   `-- test/
-|   |       `-- java/
+|   |   |   \`-- resources/
+|   |   \`-- test/
+|   |       \`-- java/
 |   |-- Dockerfile
 |   |-- pom.xml
-|   `-- README.md
+|   \`-- README.md
 |-- your-service-2/
 |   |-- src/
 |   |   |-- main/
 |   |   |   |-- java/
-|   |   |   `-- resources/
-|   |   `-- test/
-|   |       `-- java/
+|   |   |   \`-- resources/
+|   |   \`-- test/
+|   |       \`-- java/
 |   |-- Dockerfile
 |   |-- pom.xml
-|   `-- README.md
+|   \`-- README.md
 |-- your-gateway/
 |   |-- src/
 |   |   |-- main/
 |   |   |   |-- java/
-|   |   |   `-- resources/
-|   |   `-- test/
-|   |       `-- java/
+|   |   |   \`-- resources/
+|   |   \`-- test/
+|   |       \`-- java/
 |   |-- Dockerfile
 |   |-- pom.xml
-|   `-- README.md
+|   \`-- README.md
 |-- your-config-server/
 |   |-- src/
 |   |   |-- main/
 |   |   |   |-- java/
-|   |   |   `-- resources/
-|   |   `-- test/
-|   |       `-- java/
+|   |   |   \`-- resources/
+|   |   \`-- test/
+|   |       \`-- java/
 |   |-- Dockerfile
 |   |-- pom.xml
-|   `-- README.md
+|   \`-- README.md
 |-- CONTRIBUTING.md
 |-- LICENSE
 |-- README.md
 |-- .gitignore
-`-- docker-compose.yml
+\`-- docker-compose.yml
+EOL
+
+echo "Directory tree inserted into README.md"
 
 
 
