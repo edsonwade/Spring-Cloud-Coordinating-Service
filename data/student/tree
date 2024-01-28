@@ -1,0 +1,81 @@
+your-microservices-repo/
+├── api-gateway/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── yourcompany/
+│   │   │   │           └── apigateway/
+│   │   │   │               └── ApiGatewayApplication.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── java/
+│   └── Dockerfile
+├── eureka-server-1/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── yourcompany/
+│   │   │   │           └── eurekaserver/
+│   │   │   │               └── EurekaServer1Application.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── java/
+│   └── Dockerfile
+├── eureka-server-2/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── yourcompany/
+│   │   │   │           └── eurekaserver/
+│   │   │   │               └── EurekaServer2Application.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── java/
+│   └── Dockerfile
+├── student-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── yourcompany/
+│   │   │   │           └── studentservice/
+│   │   │   │               └── StudentServiceApplication.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── java/
+│   └── Dockerfile
+├── teacher-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── yourcompany/
+│   │   │   │           └── teacherservice/
+│   │   │   │               └── TeacherServiceApplication.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── java/
+│   └── Dockerfile
+├── postgres-db/
+│   └── Dockerfile
+├── mongodb-db/
+│   └── Dockerfile
+├── prometheus/
+│   └── prometheus.yml
+├── grafana/
+│   └── Dockerfile
+├── health-check/
+│   └── Dockerfile
+├── docker-compose.yml
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+└── .gitignore

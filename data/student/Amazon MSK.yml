@@ -1,0 +1,6 @@
+spring:
+  kafka:
+    bootstrap-servers: your-msk-bootstrap-servers
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: PLAIN

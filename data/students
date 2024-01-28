@@ -1,0 +1,86 @@
+Certainly, let's expand on the entities and include security considerations. We'll also cover the relationships between entities.
+
+1. Entity Definitions:
+Student Entity:
+Attributes:
+Student ID
+Name
+Email
+Age
+...
+Teacher Entity:
+Attributes:
+Teacher ID
+Name
+Email
+Subject
+...
+Course Entity:
+Attributes:
+Course ID
+Title
+Description
+...
+Degree Entity:
+Attributes:
+Degree ID
+Title
+Level (e.g., Undergraduate, Graduate)
+...
+University Entity:
+Attributes:
+University ID
+Name
+Location
+...
+2. Entity Relationships:
+Student - Course (Many-to-Many):
+A student can enroll in multiple courses.
+A course can have multiple students.
+Student - Degree (Many-to-One):
+A student can be associated with one degree.
+A degree can have multiple students.
+Teacher - Course (One-to-Many):
+A teacher can teach multiple courses.
+A course is taught by one teacher.
+University - Degree (One-to-Many):
+A university can offer multiple degrees.
+A degree is offered by one university.
+3. Security Considerations:
+Authentication and Authorization:
+Implement user authentication for students, teachers, and any other roles.
+Define access control policies based on roles.
+Utilize Spring Security for securing endpoints.
+Data Encryption:
+Implement encryption for sensitive data like passwords.
+Use HTTPS to secure data transmission.
+Input Validation:
+Validate and sanitize user inputs to prevent security vulnerabilities like SQL injection and cross-site scripting (XSS).
+Role-Based Access Control (RBAC):
+Assign different roles to users (e.g., student, teacher) and restrict access based on roles.
+Auditing and Logging:
+Implement logging mechanisms to track user activities.
+Set up auditing for sensitive operations.
+Secure Communication:
+Use secure communication protocols for microservices interactions.
+Implement proper CORS (Cross-Origin Resource Sharing) configurations.
+4. Jira Epics and Tasks:
+Security Epic:
+Tasks:
+Implement user authentication.
+Set up authorization roles.
+Implement encryption for sensitive data.
+Implement input validation for all endpoints.
+Set up role-based access control (RBAC).
+Implement auditing and logging.
+Ensure secure communication between microservices.
+Entity Management Epics:
+Tasks:
+Create CRUD operations for Student, Teacher, Course, Degree, and University entities.
+Define and implement relationships between entities.
+5. Documentation:
+Security Documentation:
+Include a section in your Confluence documentation that explains the implemented security measures, authentication, and authorization mechanisms.
+Entity Relationship Diagram (ERD):
+Create an ERD in Confluence to visually represent the relationships between Student, Teacher, Course, Degree, and University entities.
+This provides a more comprehensive structure, considering entities, relationships, and security aspects for a well-rounded microservices project. Adjustments can be made based on specific project requirements and domain intricacies.

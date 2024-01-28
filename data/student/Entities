@@ -1,0 +1,94 @@
+Entities:
+Student Entity:
+
+Properties:
+Student ID
+Name
+Email
+Course Enrollment (Relation to Course Entity)
+Functionality:
+Create, read, update, and delete student profiles.
+Enroll or withdraw from courses.
+Teacher Entity:
+
+Properties:
+Teacher ID
+Name
+Email
+Courses Assigned (Relation to Course Entity)
+Functionality:
+Create, read, update, and delete teacher profiles.
+Assign or remove courses.
+Course Entity:
+
+Properties:
+Course ID
+Course Name
+Description
+Students Enrolled (Relation to Student Entity)
+Teachers Assigned (Relation to Teacher Entity)
+Functionality:
+Create, read, update, and delete course details.
+View enrolled students and assigned teachers.
+User Entity:
+
+Properties:
+User ID
+Username
+Password (Hashed for Security)
+Roles (e.g., STUDENT, TEACHER)
+Functionality:
+Authentication (Login) with JWT tokens.
+Authorization based on roles.
+Authentication and Authorization:
+Authentication Service:
+
+Functionality:
+Handles user authentication.
+Generates JWT tokens upon successful authentication.
+Authorization Service:
+
+Functionality:
+Validates and authorizes incoming requests based on JWT tokens.
+Controls access to protected resources (API endpoints).
+Relations:
+Student-Course Relation:
+
+A many-to-many relationship where a student can be enrolled in multiple courses, and a course can have multiple students.
+Teacher-Course Relation:
+
+A many-to-many relationship where a teacher can be assigned to multiple courses, and a course can have multiple teachers.
+User-Role Relation:
+
+A one-to-many relationship where a user can have one or more roles (e.g., STUDENT, TEACHER).
+Main Functionality:
+Student Service:
+
+Manages student profiles and course enrollments.
+Enforces authentication and authorization for student-related operations.
+Teacher Service:
+
+Manages teacher profiles and course assignments.
+Enforces authentication and authorization for teacher-related operations.
+Course Service:
+
+Manages course details, enrolled students, and assigned teachers.
+Enforces authentication and authorization for course-related operations.
+Authentication Service:
+
+Handles user login and issues JWT tokens for authenticated users.
+Authorization Service:
+
+Validates and authorizes requests based on JWT tokens and user roles.
+Example Scenarios:
+A student logs in, views their profile, enrolls in a course.
+A teacher logs in, views their profile, assigns themselves to teach a course.
+An admin (with appropriate role) manages user roles, adds or removes courses, etc.
+This structure allows for a clear separation of concerns, secure authentication, and authorization mechanisms, and well-defined relations between entities for a scalable and maintainable system.
+
+
+
+
+
+
+

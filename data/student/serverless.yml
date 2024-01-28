@@ -1,0 +1,14 @@
+service: your-service-name
+
+provider:
+  name: aws
+  runtime: java11
+  region: your-region
+
+functions:
+  yourFunctionName:
+    handler: com.example.YourHandler
+    events:
+      - http:
+          path: /your-path
+          method: any
