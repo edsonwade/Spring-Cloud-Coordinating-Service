@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  tollrate-service-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_APPLICATION_NAME=tollrate-service
+      - SERVER_PORT=8081
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./target:/app/target
+
+  tollrate-service-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_APPLICATION_NAME=tollrate-service
+      - SERVER_PORT=8082
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./target:/app/target

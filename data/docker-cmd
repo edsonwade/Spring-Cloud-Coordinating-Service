@@ -1,0 +1,88 @@
+# Remove Docker Image:
+
+# List Docker images
+docker images
+
+# Remove a Docker image
+docker rmi image_name_or_id
+
+# Remove all unused images
+docker image prune -a
+
+# Clean Docker Cache:
+
+# Remove all stopped containers
+docker container prune
+
+# Remove all dangling images
+docker image prune
+
+# Remove all unused data
+docker system prune -a
+
+# Clean Docker Memory:
+
+# Display Docker memory usage
+docker stats
+
+# Stop all running containers
+docker stop $(docker ps -q)
+
+# Remove all stopped containers
+docker container prune
+
+# Docker Compose:
+
+# Stop and remove containers defined in docker-compose.yml
+docker-compose down
+
+# Additional Cleanup:
+
+# Remove all containers, networks, volumes, and images
+docker system prune -a
+
+# Stop and remove all Docker services
+docker-compose down -v --rmi all
+
+# Stop and remove all containers, networks, volumes, and images
+docker-compose down -v --rmi all --remove-orphans
+
+
+# Docker Basics:
+
+# Build Docker images
+docker-compose build
+
+# Tag Docker images
+docker tag your-eureka-image:latest your-registry/your-eureka-image:latest
+docker tag your-image-name:latest your-registry/your-image-name:latest
+# ... tag other images similarly
+
+# Log in to Docker registry
+docker login your-registry
+
+# Push Docker images to the registry
+docker push your-registry/your-eureka-image:latest
+docker push your-registry/your-image-name:latest
+# ... push other images similarly
+
+# Run Docker Compose to start containers
+docker-compose up -d
+
+# List running containers
+docker ps
+
+# View logs of a container
+docker logs container_name_or_id
+
+# Connect to a PostgreSQL container using psql
+docker exec -it postgres-container psql -U your_user -d your_database
+
+# Backup PostgreSQL data
+docker exec -t postgres-container pg_dump -U your_user -d your_database > backup.sql
+
+# Restore PostgreSQL data
+cat backup.sql | docker exec -i postgres-container psql -U your_user -d your_database
+
+# Stop Docker Compose and remove containers
+docker-compose down

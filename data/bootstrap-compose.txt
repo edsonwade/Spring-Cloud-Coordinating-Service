@@ -1,0 +1,157 @@
+version: '3'
+
+services:
+  eureka-server:
+    image: your-eureka-image:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: your_database_name
+      POSTGRES_USER: your_database_user
+      POSTGRES_PASSWORD: your_database_password
+    ports:
+      - "5432:5432"
+
+  mongodb-db:
+    image: mongo:latest
+    container_name: mongodb-db
+    ports:
+      - "27017:27017"
+
+  app-instance-1:
+    image: your-image-name:latest
+    container_name: app-instance-1
+    ports:
+      - "8081:8080"
+    depends_on:
+      - eureka-server
+      - postgres-db
+      - mongodb-db
+
+  app-instance-2:
+    image: your-image-name:latest
+    container_name: app-instance-2
+    ports:
+      - "8082:8080"
+    depends_on:
+      - eureka-server
+      - postgres-db
+      - mongodb-db
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app-instance-1
+      - app-instance-2
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=your_grafana_password
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+health-check:
+  test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+  interval: 10s
+  retries: 5
+  timeout: 5s
+
+
+ ------------- eureka-----
+ version: '3'
+
+ services:
+   eureka-server-1:
+     image: your-eureka-image:latest
+     container_name: eureka-server-1
+     ports:
+       - "8761:8761"
+
+   eureka-server-2:
+     image: your-eureka-image:latest
+     container_name: eureka-server-2
+     ports:
+       - "8762:8761"
+     environment:
+       - eureka.client.serviceUrl.defaultZone=http://eureka-server-1:8761/eureka/
+
+   postgres-db:
+     image: postgres:latest
+     container_name: postgres-db
+     environment:
+       POSTGRES_DB: your_database_name
+       POSTGRES_USER: your_database_user
+       POSTGRES_PASSWORD: your_database_password
+     ports:
+       - "5432:5432"
+
+   mongodb-db:
+     image: mongo:latest
+     container_name: mongodb-db
+     ports:
+       - "27017:27017"
+
+   app-instance-1:
+     image: your-image-name:latest
+     container_name: app-instance-1
+     ports:
+       - "8081:8080"
+     depends_on:
+       - eureka-server-1
+       - eureka-server-2
+       - postgres-db
+       - mongodb-db
+
+   app-instance-2:
+     image: your-image-name:latest
+     container_name: app-instance-2
+     ports:
+       - "8082:8080"
+     depends_on:
+       - eureka-server-1
+       - eureka-server-2
+       - postgres-db
+       - mongodb-db
+
+   prometheus:
+     image: prom/prometheus:latest
+     container_name: prometheus
+     volumes:
+       - ./prometheus:/etc/prometheus
+     ports:
+       - "9090:9090"
+     depends_on:
+       - app-instance-1
+       - app-instance-2
+
+   grafana:
+     image: grafana/grafana:latest
+     container_name: grafana
+     environment:
+       - GF_SECURITY_ADMIN_PASSWORD=your_grafana_password
+     ports:
+       - "3000:3000"
+     depends_on:
+       - prometheus
+
+ health-check:
+   test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+   interval: 10s
+   retries: 5
+   timeout: 5s
+
+

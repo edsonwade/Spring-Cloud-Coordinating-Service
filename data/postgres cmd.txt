@@ -1,0 +1,26 @@
+# Connect to PostgreSQL
+psql -U your_user -d your_database
+
+# Create a table in PostgreSQL
+CREATE TABLE your_table (id SERIAL PRIMARY KEY, name VARCHAR(255));
+
+# Insert data into the table
+INSERT INTO your_table (name) VALUES ('John'), ('Jane');
+
+# Query data from the table
+SELECT * FROM your_table;
+
+# Update data in the table
+UPDATE your_table SET name = 'Updated Name' WHERE id = 1;
+
+# Delete data from the table
+DELETE FROM your_table WHERE id = 2;
+
+# View table structure
+\d your_table;
+
+# View all tables in the database
+\dt;
+
+# Exit psql
+\q

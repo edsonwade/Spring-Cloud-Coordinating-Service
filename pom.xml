@@ -16,6 +16,8 @@
     <description>Spring Cloud microservice</description>
     <modules>
         <module>eureka-server</module>
+        <module>tollrate</module>
+        <module>fastpass-service</module>
     </modules>
     <properties>
         <java.version>11</java.version>
@@ -26,6 +28,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

@@ -1,0 +1,4 @@
+on cliente side.
+
+java -jar your-client-app.jar --spring.application.name=your-service-name --server.port=8081
+java -jar your-client-app.jar --spring.application.name=your-service-name --server.port=8082
