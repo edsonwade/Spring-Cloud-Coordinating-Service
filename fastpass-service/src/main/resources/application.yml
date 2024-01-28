@@ -1,0 +1,27 @@
+version: '3'
+
+spring:
+  application:
+    name: fastpass-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, metrics, prometheus, health
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.int} # to run multiple instance
+
+server:
+  port: 0
+
+
+
+
+#eureka.client.serviceUrl.defaultZone = http://localhost:8761/eureka
+#eureka.client.register-with-eureka= true

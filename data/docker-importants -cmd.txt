@@ -1,0 +1,17 @@
+# Build Docker images
+docker-compose build
+
+# Tag Docker images
+docker tag your-eureka-image:latest your-registry/your-eureka-image:latest
+docker tag your-image-name:latest your-registry/your-image-name:latest
+# ... tag other images similarly
+
+# Log in to Docker registry
+docker login your-registry
+
+# Push Docker images to the registry
+docker push your-registry/your-eureka-image:latest
+docker push your-registry/your-image-name:latest
+# ... push other images similarly
+
+Replace your-registry with the actual URL of your container registry. After successfully pushing your Docker images to the registry, they will be available for deployment on other systems.
