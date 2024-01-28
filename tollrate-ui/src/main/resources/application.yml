@@ -1,0 +1,17 @@
+version: '3'
+
+spring:
+  application:
+    name: tollrate-service-ui
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    hostname: localhost
+
+
+
+server:
+  port: 8081

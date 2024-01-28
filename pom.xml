@@ -18,6 +18,7 @@
         <module>eureka-server</module>
         <module>tollrate</module>
         <module>fastpass-service</module>
+        <module>tollrate-ui</module>
     </modules>
     <properties>
         <java.version>11</java.version>
