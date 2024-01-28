@@ -29,8 +29,7 @@ Follow these steps to get the project up and running locally:
 
 ## Directory tree
 #!/bin/bash
-
-cat <<EOL >> README.md
+```bash
 your-repo/
 |-- your-service-1/
 |   |-- src/
@@ -77,9 +76,7 @@ your-repo/
 |-- README.md
 |-- .gitignore
 \`-- docker-compose.yml
-EOL
-
-echo "Directory tree inserted into README.md"
+```
 
 
 
