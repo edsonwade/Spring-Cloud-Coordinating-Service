@@ -91,7 +91,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For inquiries, please contact our project maintainer:
 
-👤 **Your Name**  
-📧 **your.email@example.com**  
-🐦 [@your-twitter-handle](https://twitter.com/your-twitter-handle)
+👤 **Vanilson Muhongo**  
+
 
