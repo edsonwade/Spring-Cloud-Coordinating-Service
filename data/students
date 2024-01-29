@@ -84,3 +84,7 @@ Include a section in your Confluence documentation that explains the implemented
 Entity Relationship Diagram (ERD):
 Create an ERD in Confluence to visually represent the relationships between Student, Teacher, Course, Degree, and University entities.
 This provides a more comprehensive structure, considering entities, relationships, and security aspects for a well-rounded microservices project. Adjustments can be made based on specific project requirements and domain intricacies.
+
+
+📧 **your.email@example.com**
+🐦 [@your-twitter-handle](https://twitter.com/your-twitter-handle)
