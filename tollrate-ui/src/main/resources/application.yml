@@ -17,6 +17,20 @@ management:
       exposure:
         include: '*'
 
+resilience4j:
+  timelimiter:
+    instances:
+      tollrate-cb.timeout-duration: 4s
+  circuitbreaker:
+    instance:
+      tollrate-cb:
+      register-health-indicator: true
+      sliding-window-size: 3
+
+
+
+
+
 
 
 server:

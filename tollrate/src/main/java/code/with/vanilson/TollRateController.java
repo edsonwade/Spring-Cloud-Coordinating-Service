@@ -1,5 +1,6 @@
 package code.with.vanilson;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/tollrate")
+@Slf4j
 public class TollRateController {
 
     List<TollRate> tollRates;
@@ -34,10 +36,23 @@ public class TollRateController {
 
     @RequestMapping(value = "/{stationId}")
     public ResponseEntity<TollRate> listRatesById(@PathVariable int stationId) {
+        log.info("Station requested {}: ", stationId);
         var tollRate = tollRates.stream()
                 .filter(rate -> stationId == rate.getStationId())
                 .findAny()
                 .orElse(new TollRate());
+        return ResponseEntity.ok().body(tollRate);
+
+    }
+
+    @RequestMapping(value = "/slow/{stationId}")
+    public ResponseEntity<TollRate> getTollRateSlow(@PathVariable int stationId) throws InterruptedException {
+        log.info("Station requested (slow) {}: ", stationId);
+        var tollRate = tollRates.stream()
+                .filter(rate -> stationId == rate.getStationId())
+                .findAny()
+                .orElse(new TollRate());
+        Thread.sleep(3000);
         return ResponseEntity.ok().body(tollRate);
 
     }
