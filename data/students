@@ -88,3 +88,8 @@ This provides a more comprehensive structure, considering entities, relationship
 
 📧 **your.email@example.com**
 🐦 [@your-twitter-handle](https://twitter.com/your-twitter-handle)
+
+
+http://localhost:8081/actuator/circuitbreakerevents
+
+http://localhost:8081/dashboard?stationId=1002
