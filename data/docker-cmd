@@ -86,3 +86,6 @@ cat backup.sql | docker exec -i postgres-container psql -U your_user -d your_dat
 
 # Stop Docker Compose and remove containers
 docker-compose down
+
+
+host.docker.internal

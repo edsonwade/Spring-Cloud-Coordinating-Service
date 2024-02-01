@@ -3,35 +3,28 @@ package code.with.vanilson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/fast-pass")
 public class FastPassController {
 
-    List<FastPass> fastPass = List.of(
-            new FastPass("1", "vanilson wayne", "919890102", 567.45),
-            new FastPass("2", "sonia wayne", "99999999", 1000.00),
-            new FastPass("3", "william wayne", "00000000", 2000.00)
+    List<FastPass> customers;
 
-    );
+    public FastPassController() {
 
-    @GetMapping
-    public ResponseEntity<List<FastPass>> listAllRates() {
-        return ResponseEntity.ok(Collections.unmodifiableList(fastPass));
-    }
-
-    @GetMapping(value = "/fastPassId")
-
-    public ResponseEntity<FastPass> getFastPass(@RequestParam(name = "fastPassId") String fastPassId) {
-        var fastPass1 = fastPass.stream()
-                .filter(rate -> fastPassId.equals(rate.getFastPassId()))
-                .findFirst()
-                .orElseThrow(
-                        () -> new FastPassByIdNotFoundException(" rate with id " + fastPassId + " was not founded"));
-        return ResponseEntity.ok().body(fastPass1);
+        customers = new ArrayList<>();
+        customers.add(new FastPass("800", "Omar Zidan", "555-123-4567", 19.50f));
+        customers.add(new FastPass("801", "Maggie Bell", "555-321-7654", 11.25f));
+        customers.add(new FastPass("802", "Tiffany Wallace", "555-987-6543", 35.05f));
 
     }
 
+    @RequestMapping(path = "/fastpass", params = {"fastpassid"})
+    public FastPass getFastPassById(@RequestParam String fastpassid) {
+        System.out.println("fast pass retrieved for " + fastpassid);
+        return customers.stream().filter(customer -> fastpassid.equals(customer.getFastPassId())).findAny()
+                .orElse(new FastPass());
+    }
 }
